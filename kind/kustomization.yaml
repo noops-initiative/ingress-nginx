@@ -1,0 +1,10 @@
+resources:
+- https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+patches:
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/args/-
+      value: --enable-ssl-passthrough
+  target:
+    kind: Deployment
+    name: ingress-nginx-controller
